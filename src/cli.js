@@ -3,6 +3,7 @@ import { up } from "./fs/up.js";
 import { cd } from "./fs/cd.js";
 import { create } from "./fs/create.js";
 import { read } from "./fs/read.js";
+import { remove } from "./fs/delete.js";
 
 export const parseArgs = async (input) => {
     const command = input.toString().trim().split(' ');
@@ -25,6 +26,9 @@ export const parseArgs = async (input) => {
             break;
         case 'add': 
             await create(path);
+            break;
+        case 'rm': 
+            await remove(path);
             break;
         }
 };
