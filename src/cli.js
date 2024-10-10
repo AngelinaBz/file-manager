@@ -6,6 +6,7 @@ import { read } from "./fs/read.js";
 import { remove } from "./fs/delete.js";
 import { rename } from "./fs/rename.js";
 import { copy } from "./fs/copy.js";
+import { move } from "./fs/move.js";
 
 export const parseArgs = async (input) => {
     const command = input.toString().trim().split(' ');
@@ -34,6 +35,10 @@ export const parseArgs = async (input) => {
             break;
         case 'cp': 
             await copy(path, command[2]);
+            console.log(`You are currently in ${process.cwd()}`);
+            break;
+        case 'mv': 
+            await move(path, command[2]);
             break;
         case 'rm': 
             await remove(path);

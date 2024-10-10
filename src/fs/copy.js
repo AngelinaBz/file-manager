@@ -26,5 +26,4 @@ export const copy = async (path, newPath) => {
     const readStream = fs.createReadStream(path);
     const writeStream = fs.createWriteStream(newFilePath);
     readStream.pipe(writeStream);
-    console.log(`You are currently in ${process.cwd()}`);
 };
