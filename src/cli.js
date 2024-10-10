@@ -7,6 +7,8 @@ import { remove } from "./fs/delete.js";
 import { rename } from "./fs/rename.js";
 import { copy } from "./fs/copy.js";
 import { move } from "./fs/move.js";
+import { compress } from "./zip/compress.js";
+import { decompress } from "./zip/decompress.js";
 
 export const parseArgs = async (input) => {
     const command = input.toString().trim().split(' ');
@@ -42,6 +44,12 @@ export const parseArgs = async (input) => {
             break;
         case 'rm': 
             await remove(path);
+            break;
+        case 'compress': 
+            await compress(path, command[2]);
+            break;
+        case 'decompress': 
+            await decompress(path, command[2]);
             break;
         }
 };
