@@ -9,6 +9,7 @@ import { copy } from "./fs/copy.js";
 import { move } from "./fs/move.js";
 import { compress } from "./zip/compress.js";
 import { decompress } from "./zip/decompress.js";
+import { calculateHash } from "./hash/calcHash.js";
 
 export const parseArgs = async (input) => {
     const command = input.toString().trim().split(' ');
@@ -44,6 +45,9 @@ export const parseArgs = async (input) => {
             break;
         case 'rm': 
             await remove(path);
+            break;
+        case 'hash': 
+            await calculateHash(path);
             break;
         case 'compress': 
             await compress(path, command[2]);
