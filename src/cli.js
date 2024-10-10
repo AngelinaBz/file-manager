@@ -5,6 +5,7 @@ import { create } from "./fs/create.js";
 import { read } from "./fs/read.js";
 import { remove } from "./fs/delete.js";
 import { rename } from "./fs/rename.js";
+import { copy } from "./fs/copy.js";
 
 export const parseArgs = async (input) => {
     const command = input.toString().trim().split(' ');
@@ -30,6 +31,9 @@ export const parseArgs = async (input) => {
             break;
         case 'rn': 
             await rename(path, command[2]);
+            break;
+        case 'cp': 
+            await copy(path, command[2]);
             break;
         case 'rm': 
             await remove(path);
