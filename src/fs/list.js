@@ -1,9 +1,8 @@
 import fs from 'fs';
-import { homedir } from 'os';
 
 export const list = async () => {
     try {
-    const currentDir = homedir();
+    const currentDir = process.cwd();
     const data = await fs.promises.readdir(currentDir, { withFileTypes: true });
     
     const files = [];

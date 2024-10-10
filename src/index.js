@@ -20,7 +20,6 @@ const startProgram = () => {
   }
 
   console.log(`Welcome to the File Manager, ${username}!`);
-  console.log(`You are currently in ${homedir()}`);
 
   const rl = readline.createInterface({
     input: process.stdin,
@@ -36,6 +35,9 @@ const startProgram = () => {
   rl.on('line', (input) => {
     parseArgs(input);
   });
+
+  process.chdir(homedir());
+  console.log(`You are currently in ${process.cwd()}`);
 };
 
 startProgram();
