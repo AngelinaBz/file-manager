@@ -1,6 +1,7 @@
 import { list } from "./fs/list.js";
 import { up } from "./fs/up.js";
 import { cd } from "./fs/cd.js";
+import { create } from "./fs/create.js";
 
 export const parseArgs = async (input) => {
     const command = input.toString().trim().split(' ');
@@ -17,6 +18,9 @@ export const parseArgs = async (input) => {
             break;
         case 'cd': 
             await cd(path);
+            break;
+        case 'add': 
+            await create(path);
             break;
         }
 };

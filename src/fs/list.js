@@ -22,6 +22,7 @@ export const list = async () => {
     const result = [...folders, ...files];
 
     console.table(result);
+    console.log(`You are currently in ${process.cwd()}`);
   } catch (err) {
     console.error(err);
   }
