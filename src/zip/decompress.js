@@ -1,6 +1,4 @@
 import fs from 'fs';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
 import { createBrotliDecompress } from 'zlib';
 
 export const decompress = async (compressedFile, filePath) => {
