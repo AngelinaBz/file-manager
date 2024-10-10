@@ -1,5 +1,3 @@
-import fs from 'fs';
-import { resolve, basename } from 'path';
 import { copy } from './copy.js';
 import { remove } from './delete.js';
 

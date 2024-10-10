@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { resolve, join, basename } from 'path';
+import { resolve, basename } from 'path';
 
 export const copy = async (path, newPath) => {
     if (!path || !newPath) {
