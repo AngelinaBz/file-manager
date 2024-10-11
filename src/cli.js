@@ -1,6 +1,6 @@
 import { list } from "./fs/list.js";
-import { up } from "./fs/up.js";
-import { cd } from "./fs/cd.js";
+import { up } from "./navigation/up.js";
+import { cd } from "./navigation/cd.js";
 import { create } from "./fs/create.js";
 import { read } from "./fs/read.js";
 import { remove } from "./fs/delete.js";
