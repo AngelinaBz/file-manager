@@ -2,12 +2,18 @@ import { createHash } from 'crypto';
 import fs from 'fs';
 
 export const calculateHash = async (path) => {
-    const hash = createHash('sha256');
-    const fileStream = fs.createReadStream(path);
+	if (!path) {
+        console.error('Invalid input');
+        console.log(`You are currently in ${process.cwd()}`);
+        return;
+    }
 
     try {
 		await fs.promises.access(path);
 
+		const hash = createHash('sha256');
+		const fileStream = fs.createReadStream(path);
+		
 		fileStream.on('data', chunk => {
 			hash.update(chunk);
 		});
@@ -16,8 +22,8 @@ export const calculateHash = async (path) => {
 			console.log(`You are currently in ${process.cwd()}`);
 		});
 	} catch (err) {
-		if (err.code === 'ENOENT') {
-			throw new Error(`Failed`);
-		}
+		console.error('Operation failed');
+		console.log(`You are currently in ${process.cwd()}`);
+		return;
 	}
 };

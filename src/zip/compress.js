@@ -2,33 +2,45 @@ import fs from 'fs';
 import { createBrotliCompress } from 'zlib';
 
 export const compress = async (filePath, compressedFile) => {
+    if (!filePath || !compressedFile) {
+        console.error('Invalid input');
+        console.log(`You are currently in ${process.cwd()}`);
+        return;
+    }
     try {
-        await fs.promises.access(filePath);
+        const stats = await fs.promises.stat(filePath);
+        if (!stats.isFile()) {
+            console.error('Operation failed');
+            console.log(`You are currently in ${process.cwd()}`);
+            return;
+        }
         const brotli = createBrotliCompress();
         const readStream = fs.createReadStream(filePath);
 		const writeStream = fs.createWriteStream(compressedFile);
 
         readStream.pipe(brotli).pipe(writeStream);
         
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             writeStream.on('finish', async () => {
                 try {
                     console.log(`You are currently in ${process.cwd()}`);
                     await fs.promises.unlink(filePath);
                     resolve();
                 } catch (error) {
-                    reject(new Error('Failed'));
+                    console.error('Operation failed');
+                    console.log(`You are currently in ${process.cwd()}`);
                 }
             });
 
-            writeStream.on('error', reject);
+            writeStream.on('error', () => {
+                console.error('Operation failed');
+                console.log(`You are currently in ${process.cwd()}`);
+            });
         });
         
     } catch (error) {
-        if (error.code === 'ENOENT') {
-            throw new Error('File not found');
-        } else {
-            throw error;
-        }
+        console.error('Operation failed');
+        console.log(`You are currently in ${process.cwd()}`);
+        return;
     }
 };
