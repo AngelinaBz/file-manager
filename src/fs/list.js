@@ -24,6 +24,8 @@ export const list = async () => {
     console.table(result);
     console.log(`You are currently in ${process.cwd()}`);
   } catch (err) {
-    console.error(err);
+    console.error('Operation failed');
+    console.log(`You are currently in ${process.cwd()}`);
+    return;
   }
 }

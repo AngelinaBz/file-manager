@@ -3,6 +3,8 @@ export const up = async () => {
       process.chdir('..');
       console.log(`You are currently in ${process.cwd()}`);
     } catch (err) {
-      console.error(err);
+      console.error('Operation failed');
+      console.log(`You are currently in ${process.cwd()}`);
+      return;
     }
 }

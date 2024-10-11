@@ -2,7 +2,8 @@ import path from "node:path";
 
 export const cd = async (newDir) => {
     if (!newDir) {
-        console.error('Error');
+        console.error('Invalid input');
+        console.log(`You are currently in ${process.cwd()}`);
         return;
     }
     try {
@@ -13,6 +14,8 @@ export const cd = async (newDir) => {
           }
         console.log(`You are currently in ${process.cwd()}`);
     } catch (err) {
-        console.error(err);
+        console.error('Operation failed');
+        console.log(`You are currently in ${process.cwd()}`);
+        return;
     }
 }
