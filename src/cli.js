@@ -10,6 +10,7 @@ import { move } from "./fs/move.js";
 import { compress } from "./zip/compress.js";
 import { decompress } from "./zip/decompress.js";
 import { calculateHash } from "./hash/calcHash.js";
+import { os } from "./os/os.js";
 
 export const parseArgs = async (input) => {
     const command = input.toString().trim().split(' ');
@@ -55,5 +56,11 @@ export const parseArgs = async (input) => {
         case 'decompress': 
             await decompress(path, command[2]);
             break;
+        case 'os': 
+            await os(path);
+            break;
+        default:
+            console.error('Invalid input');
+            console.log(`You are currently in ${process.cwd()}`);
         }
 };
