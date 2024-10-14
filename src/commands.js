@@ -13,8 +13,8 @@ import { calculateHash } from "./hash/calcHash.js";
 import { os } from "./os/os.js";
 
 export const parseArgs = async (input) => {
-    const command = input.toString().trim().split(' ');
-    const path = command[1];
+    const command = input.toString().trim().match(/(?:[^\s"]+|"[^"]+")/g);
+    const args = command.slice(1).map(arg => arg.replace(/(^"|"$)/g, ''));
     switch (command[0]) {
         case '.exit':
             process.exit();
@@ -26,38 +26,38 @@ export const parseArgs = async (input) => {
             await up();
             break;
         case 'cd': 
-            await cd(path);
+            await cd(args[0]);
             break;
         case 'cat': 
-            await read(path);
+            await read(args[0]);
             break;
         case 'add': 
-            await create(path);
+            await create(args[0]);
             break;
         case 'rn': 
-            await rename(path, command[2]);
+            await rename(args[0], args[1]);
             break;
         case 'cp': 
-            await copy(path, command[2]);
+            await copy(args[0], args[1]);
             console.log(`You are currently in ${process.cwd()}`);
             break;
         case 'mv': 
-            await move(path, command[2]);
+            await move(args[0], args[1]);
             break;
         case 'rm': 
-            await remove(path);
+            await remove(args[0]);
             break;
         case 'hash': 
-            await calculateHash(path);
+            await calculateHash(args[0]);
             break;
         case 'compress': 
-            await compress(path, command[2]);
+            await compress(args[0], args[1]);
             break;
         case 'decompress': 
-            await decompress(path, command[2]);
+            await decompress(args[0], args[1]);
             break;
         case 'os': 
-            await os(path);
+            await os(args[0]);
             break;
         default:
             console.error('Invalid input');
