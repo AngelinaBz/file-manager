@@ -1,6 +1,6 @@
 import readline from 'readline';
 import { homedir } from 'node:os';
-import { parseArgs } from './cli.js';
+import { parseArgs } from './commands.js';
 
 const startProgram = () => {
   const args = process.argv.slice(2);
