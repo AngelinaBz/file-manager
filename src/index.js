@@ -8,14 +8,14 @@ const startProgram = () => {
   const usernameArg = args.find((arg) => arg.startsWith('--username='));
 
   if (!usernameArg) {
-    console.error('Username is required. Please provide it using --username argument.');
+    console.error('Invalid input');
     process.exit(1);
   }
 
   const username = usernameArg.split('=')[1];
 
   if (!username || username.trim() === '') {
-    console.error('Username is required. Please provide it using --username argument.');
+    console.error('Invalid input');
     process.exit(1);
   }
 
